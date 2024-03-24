@@ -130,6 +130,6 @@
 
     - name: Display fdisk output
       debug:
-        msg: "{{ fdisk_info.stdout_lines }}"
+        var: fdisk_info
 
 
