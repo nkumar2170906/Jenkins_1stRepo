@@ -1,5 +1,5 @@
 ---
-- name: Pre-checks for Linux Servers auto-started after Git Commit
+- name: Pre-checks for Linux Servers through webhook after Git Commit
   hosts: mygroup
   gather_facts: yes
   become: true
