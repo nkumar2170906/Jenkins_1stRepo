@@ -1,0 +1,134 @@
+---
+- name: Pre-checks for Linux Servers
+  hosts: mygroup
+  gather_facts: yes
+  become: true
+
+  tasks:
+    - name: Check hostname
+      assert:
+        that:
+          - ansible_facts['hostname'] is defined
+        fail_msg: "Hostname is not defined"
+        success_msg: "Hostname is defined: {{ ansible_facts['hostname'] }}"
+
+    - name: Check IP address
+      debug:
+        msg: "IP Address: {{ ansible_default_ipv4.address }}"
+
+    - name: Check gateway
+      debug:
+        msg: "Gateway: {{ ansible_default_ipv4.gateway }}"
+
+    - name: Display /etc/fstab
+      command: "cat /etc/fstab"
+      register: fstab_info
+      changed_when: false
+      failed_when: false
+      ignore_errors: true
+      delegate_to: localhost
+      run_once: true
+      become: false
+
+    - name: Display fstab contents
+      debug:
+        msg: "{{ fstab_info.stdout_lines }}"
+
+    - name: Display all running processes
+      command: "ps aux"
+      register: processes_info
+      changed_when: false
+      failed_when: false
+      ignore_errors: true
+      delegate_to: localhost
+      run_once: true
+      become: false
+
+    - name: Display running processes
+      debug:
+        msg: "{{ processes_info.stdout_lines }}"
+
+    - name: Display netstat -tulpn output
+      command: "netstat -tulpn"
+      register: netstat_info
+      changed_when: false
+      failed_when: false
+      ignore_errors: true
+      delegate_to: localhost
+      run_once: true
+      become: false
+
+    - name: Display netstat -tulpn output
+      debug:
+        msg: "{{ netstat_info.stdout_lines }}"
+
+    - name: Display /etc/hosts
+      command: "cat /etc/hosts"
+      register: hosts_info
+      changed_when: false
+      failed_when: false
+      ignore_errors: true
+      delegate_to: localhost
+      run_once: true
+      become: false
+
+    - name: Display /etc/hosts contents
+      debug:
+        msg: "{{ hosts_info.stdout_lines }}"
+
+    - name: Display /etc/passwd
+      command: "cat /etc/passwd"
+      register: passwd_info
+      changed_when: false
+      failed_when: false
+      ignore_errors: true
+      delegate_to: localhost
+      run_once: true
+      become: false
+
+    - name: Display /etc/passwd contents
+      debug:
+        msg: "{{ passwd_info.stdout_lines }}"
+
+    - name: Display /etc/shadow
+      command: "cat /etc/shadow"
+      register: shadow_info
+      changed_when: false
+      failed_when: false
+      ignore_errors: true
+      delegate_to: localhost
+      run_once: true
+      become: false
+
+    - name: Display /etc/shadow contents
+      debug:
+        msg: "{{ shadow_info.stdout_lines }}"
+
+    - name: Display /etc/group
+      command: "cat /etc/group"
+      register: group_info
+      changed_when: false
+      failed_when: false
+      ignore_errors: true
+      delegate_to: localhost
+      run_once: true
+      become: false
+
+    - name: Display /etc/group contents
+      debug:
+        msg: "{{ group_info.stdout_lines }}"
+
+    - name: Display lsblk
+      command: "lsblk"
+      register: lsblk_info
+      changed_when: false
+      failed_when: false
+      ignore_errors: true
+      delegate_to: localhost
+      run_once: true
+      become: false
+
+    - name: Display lsblk output
+      debug:
+        msg: "{{ lsblk_info.stdout_lines }}"
+
