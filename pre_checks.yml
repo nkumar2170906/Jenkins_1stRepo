@@ -90,20 +90,6 @@
       debug:
         msg: "{{ passwd_info.stdout_lines }}"
 
-    - name: Display /etc/shadow
-      command: "cat /etc/shadow"
-      register: shadow_info
-      changed_when: false
-      failed_when: false
-      ignore_errors: true
-      delegate_to: localhost
-      run_once: true
-      become: false
-
-    - name: Display /etc/shadow contents
-      debug:
-        msg: "{{ shadow_info.stdout_lines }}"
-
     - name: Display /etc/group
       command: "cat /etc/group"
       register: group_info
