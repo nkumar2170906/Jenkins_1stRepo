@@ -118,3 +118,18 @@
       debug:
         msg: "{{ lsblk_info.stdout_lines }}"
 
+    - name: Display fdisk info
+      command: "fdisk -l"
+      register: fdisk_info
+      changed_when: false
+      failed_when: false
+      ignore_errors: true
+      delegate_to: localhost
+      run_once: true
+      become: false
+
+    - name: Display fdisk output
+      debug:
+        msg: "{{ fdisk_info.stdout_lines }}"
+
+
