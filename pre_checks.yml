@@ -6,7 +6,7 @@
 
   tasks:
     - name: Check hostname
-     assert:
+      assert:
         that:
           - ansible_facts['hostname'] is defined
         fail_msg: "Hostname is not defined"
