@@ -1,5 +1,5 @@
 ---
-- name: Pre-checks for Linux Servers through PoLL SCM after Git Commit.Java version changed.
+- name: Pre-checks for Linux Servers through PoLL SCM after Git Commit.Testing Sonarqube.
   hosts: mygroup
   gather_facts: yes
   become: true
