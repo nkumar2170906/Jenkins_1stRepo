@@ -132,9 +132,3 @@
       debug:
         var: fdisk_info
 
-    - name: Use deprecated 'sudo' module
-      sudo: yes
-      command: echo "Hello, world!"
-
-    - name: Use 'shell' module without quoting arguments
-      shell: echo Hello, world!
